@@ -6,7 +6,7 @@ const randomIndex = Math.floor(Math.random() * quotes.length);
 const app = new App({
   target: document.body,
   props: {
-    quote: quotes[randomIndex]
+    quote: quotes[0]
   }
 });
 

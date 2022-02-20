@@ -1,12 +1,13 @@
 <script>
+  import isLetter from './util/isLetter.js';
+
   export let text;
   export let key;
+  export let value;
   export let activeLetter;
   export let guessedLetters;
 
-  function isLetter(character) {
-    return /\p{L}/u.test(character)
-  }
+  let el;
 
   function highlightLetter({target}) {
     activeLetter = target.textContent;
@@ -20,6 +21,8 @@
     target.disabled = true;
 
     activeLetter = null;
+
+    window.setTimeout(updateValue, 0)
   }
 
   function checkForEnter(typeEvent) {
@@ -27,9 +30,17 @@
       typeEvent.target.blur();
     }
   }
+
+  function updateValue() {
+    const allInputs = Array.from(el.querySelectorAll('input'));
+
+    value = allInputs.reduce((accumulator, input) => {
+      return accumulator + input.value;
+    }, '');
+  }
 </script>
 
-<div class="text">
+<div class="text" bind:this={el}>
   {#each text as word}
     <div class="word">
       {#each word as character}
