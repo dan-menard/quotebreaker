@@ -3,9 +3,9 @@
   import generateKey from './util/generateKey.js';
 
   export let quote;
+  let activeLetter = null;
 
   const {author, text} = quote;
-
   const key = generateKey();
 
   function parseIntoWordsAndLetters(string) {
@@ -20,8 +20,8 @@
 </script>
 
 <main>
-  <GameText text={words} key={key} />
-  <GameText text={names} key={key} />
+  <GameText text={words} key={key} bind:activeLetter={activeLetter} />
+  <GameText text={names} key={key} bind:activeLetter={activeLetter} />
 </main>
 
 <style>

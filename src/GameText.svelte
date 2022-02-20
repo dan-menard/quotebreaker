@@ -1,9 +1,15 @@
 <script>
   export let text;
   export let key;
+  export let activeLetter;
 
   function isLetter(character) {
     return /\p{L}/u.test(character)
+  }
+
+  function highlightLetter({target}) {
+    activeLetter = target.textContent;
+    target.nextElementSibling.focus();
   }
 </script>
 
@@ -11,9 +17,9 @@
   {#each text as word}
     <div class="word">
       {#each word as character}
-        <div class="character">
+        <div class="character{key[character] === activeLetter ? ' active' : ''}">
           {#if isLetter(character)}
-            <button>{key[character]}</button>
+            <button on:click={highlightLetter}>{key[character]}</button>
             <input type="text" maxlength="1" />
           {:else}
             <span>{character}</span>
@@ -40,6 +46,10 @@
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
+  }
+
+  .character.active  button {
+    color: #f0f;
   }
 
   .character * {
