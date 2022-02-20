@@ -21,6 +21,12 @@
 
     activeLetter = null;
   }
+
+  function checkForEnter(typeEvent) {
+    if (typeEvent.key === "Enter") {
+      typeEvent.target.blur();
+    }
+  }
 </script>
 
 <div class="text">
@@ -35,6 +41,7 @@
               maxlength="1"
               disabled="true"
               on:blur={guessAdded}
+              on:keyup={checkForEnter}
               value={guessedLetters[key[character]] || ''}
             />
           {:else}
