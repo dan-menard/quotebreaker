@@ -4,6 +4,7 @@
 
   export let quote;
   let activeLetter = null;
+  let guessedLetters = {};
 
   const {author, text} = quote;
   const key = generateKey();
@@ -20,8 +21,8 @@
 </script>
 
 <main>
-  <GameText text={words} key={key} bind:activeLetter={activeLetter} />
-  <GameText text={names} key={key} bind:activeLetter={activeLetter} />
+  <GameText text={words} key={key} bind:activeLetter={activeLetter} bind:guessedLetters={guessedLetters} />
+  <GameText text={names} key={key} bind:activeLetter={activeLetter} bind:guessedLetters={guessedLetters} />
 </main>
 
 <style>

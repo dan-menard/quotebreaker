@@ -2,6 +2,7 @@
   export let text;
   export let key;
   export let activeLetter;
+  export let guessedLetters;
 
   function isLetter(character) {
     return /\p{L}/u.test(character)
@@ -10,6 +11,11 @@
   function highlightLetter({target}) {
     activeLetter = target.textContent;
     target.nextElementSibling.focus();
+  }
+
+  function guessAdded({target}) {
+    guessedLetters[activeLetter] = target.value;
+    activeLetter = null;
   }
 </script>
 
@@ -20,7 +26,12 @@
         <div class="character{key[character] === activeLetter ? ' active' : ''}">
           {#if isLetter(character)}
             <button on:click={highlightLetter}>{key[character]}</button>
-            <input type="text" maxlength="1" />
+            <input
+              type="text"
+              maxlength="1"
+              on:blur={guessAdded}
+              value={guessedLetters[key[character]] || ''}
+            />
           {:else}
             <span>{character}</span>
           {/if}
@@ -61,13 +72,17 @@
     padding: 0;
     border: none;
     background: none;
-
-    font-size: 24px;
-    font-family: fixed;
   }
 
   input {
     padding: 0;
     border: 0;
+    text-transform: uppercase;
+    text-indent: 3px;
+  }
+
+  input, button {
+    font-size: 24px;
+    font-family: fixed;
   }
 </style>
