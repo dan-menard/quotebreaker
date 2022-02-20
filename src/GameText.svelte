@@ -10,11 +10,15 @@
 
   function highlightLetter({target}) {
     activeLetter = target.textContent;
+
+    target.nextElementSibling.disabled = false;
     target.nextElementSibling.focus();
   }
 
   function guessAdded({target}) {
     guessedLetters[activeLetter] = target.value;
+    target.disabled = true;
+
     activeLetter = null;
   }
 </script>
@@ -29,6 +33,7 @@
             <input
               type="text"
               maxlength="1"
+              disabled="true"
               on:blur={guessAdded}
               value={guessedLetters[key[character]] || ''}
             />
@@ -84,5 +89,9 @@
   input, button {
     font-size: 24px;
     font-family: fixed;
+  }
+
+  input, input[disabled] {
+    color: black;
   }
 </style>
