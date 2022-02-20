@@ -1,5 +1,6 @@
 <script>
   export let text;
+  export let key;
 
   function isLetter(character) {
     return /\p{L}/u.test(character)
@@ -12,7 +13,7 @@
       {#each word as character}
         <div class="character">
           {#if isLetter(character)}
-            <button>{character}</button>
+            <button>{key[character]}</button>
             <input type="text" maxlength="1" />
           {:else}
             <span>{character}</span>

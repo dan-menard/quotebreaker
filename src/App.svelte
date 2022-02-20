@@ -1,9 +1,12 @@
 <script>
   import GameText from './GameText.svelte';
+  import generateKey from './util/generateKey.js';
 
   export let quote;
 
   const {author, text} = quote;
+
+  const key = generateKey();
 
   function parseIntoWordsAndLetters(string) {
     const words = string.split(' ');
@@ -17,8 +20,8 @@
 </script>
 
 <main>
-  <GameText text={words} />
-  <GameText text={names} />
+  <GameText text={words} key={key} />
+  <GameText text={names} key={key} />
 </main>
 
 <style>
