@@ -93,12 +93,12 @@
     text-indent: 3px;
   }
 
-  input, button {
+  input, button, span {
     font-size: 24px;
     font-family: fixed;
   }
 
   input, input[disabled] {
-    color: black;
+    color: #3399AA;
   }
 </style>
