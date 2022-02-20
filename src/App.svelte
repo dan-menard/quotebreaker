@@ -1,4 +1,6 @@
 <script>
+  import GameText from './GameText.svelte';
+
   export let quote;
 
   const {author, text} = quote;
@@ -10,30 +12,14 @@
     return wordsAndLetters;
   }
 
-  function isLetter(character) {
-    return /\p{L}/u.test(character)
-  }
-
   const words = parseIntoWordsAndLetters(text);
   const names = parseIntoWordsAndLetters(author);
 </script>
 
 <main>
-  {#each words as word}
-    <span class="word">
-      {#each word as character}
-        {#if isLetter(character)}
-          <button>{character}</button>
-        {:else}
-          {character}
-        {/if}
-      {/each}
-    </span>
-  {/each}
+  <GameText text={words} />
+  <GameText text={names} />
 </main>
 
 <style>
-  .word {
-    padding: 10px 5px;
-  }
 </style>
