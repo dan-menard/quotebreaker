@@ -10,7 +10,7 @@
   const key = generateKey();
 
   function parseIntoWordsAndLetters(string) {
-    const words = string.split(' ');
+    const words = string.toUpperCase().split(' ');
     const wordsAndLetters = words.map((word) => word.split(''));
 
     return wordsAndLetters;
