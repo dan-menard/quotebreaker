@@ -6,22 +6,53 @@
   }
 </script>
 
-<div>
+<div class="text">
   {#each text as word}
-    <span class="word">
+    <div class="word">
       {#each word as character}
-        {#if isLetter(character)}
-          <button>{character}</button>
-        {:else}
-          {character}
-        {/if}
+        <div class="character">
+          {#if isLetter(character)}
+            <button>{character}</button>
+            <input type="text" maxlength="1" />
+          {:else}
+            <span>{character}</span>
+          {/if}
+        </div>
       {/each}
-    </span>
+    </div>
   {/each}
 </div>
 
 <style>
+  .text {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+  }
+
   .word {
-    padding: 10px 5px;
+    display: flex;
+    padding: 0 1rem;
+  }
+
+  .character {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .character * {
+    display: block;
+    width: 1rem;
+  }
+
+  button {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  input {
+    padding: 0;
+    border: 0;
   }
 </style>

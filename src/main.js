@@ -4,8 +4,8 @@ const app = new App({
   target: document.body,
   props: {
     quote: {
-      text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      author: "Martin Fowler"
+      text: "ANY FOOL CAN WRITE CODE THAT A COMPUTER CAN UNDERSTAND. GOOD PROGRAMMERS WRITE CODE THAT HUMANS CAN UNDERSTAND.",
+      author: "MARTIN FOWLER"
     }
   }
 });
