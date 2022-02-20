@@ -32,23 +32,27 @@
 
   .word {
     display: flex;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 
   .character {
     display: flex;
     flex-direction: column;
+    padding: 1rem 0;
   }
 
   .character * {
     display: block;
-    width: 1rem;
+    width: 1.5rem;
   }
 
   button {
     padding: 0;
     border: none;
     background: none;
+
+    font-size: 24px;
+    font-family: fixed;
   }
 
   input {
