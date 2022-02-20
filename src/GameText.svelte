@@ -33,8 +33,8 @@
   {#each text as word}
     <div class="word">
       {#each word as character}
-        <div class="character{key[character] === activeLetter ? ' active' : ''}">
-          {#if isLetter(character)}
+        {#if isLetter(character)}
+          <div class="letter{key[character] === activeLetter ? ' active' : ''}">
             <button on:click={highlightLetter}>{key[character]}</button>
             <input
               type="text"
@@ -44,10 +44,10 @@
               on:keyup={checkForEnter}
               value={guessedLetters[key[character]] || ''}
             />
-          {:else}
-            <span>{character}</span>
-          {/if}
-        </div>
+          </div>
+        {:else}
+          <div class="punctuation">{character}</div>
+        {/if}
       {/each}
     </div>
   {/each}
@@ -71,11 +71,11 @@
     padding: 1rem 0;
   }
 
-  .character.active  button {
+  .letter.active  button {
     color: #f0f;
   }
 
-  .character * {
+  .letter * {
     display: block;
     width: 1.5rem;
   }
@@ -93,7 +93,7 @@
     text-indent: 3px;
   }
 
-  input, button, span {
+  input, button, .punctuation {
     font-size: 24px;
     font-family: fixed;
   }
